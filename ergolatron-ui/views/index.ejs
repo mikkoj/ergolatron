@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ergolatron</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <script src="/bower_components/platform/platform.js"></script>
+
+    <link rel="import" href="/bower_components/core-icons/core-icons.html">
+    <link rel="import" href="/bower_components/core-icons/notification-icons.html">
+    <link rel="import" href="/bower_components/core-icons/hardware-icons.html">
+    <link rel="import" href="/bower_components/core-icons/device-icons.html">
+    <link rel="import" href="/bower_components/font-roboto/roboto.html">
+    <link rel="import" href="/bower_components/paper-item/paper-item.html">
+    <link rel="import" href="/bower_components/sampler-scaffold/sampler-scaffold.html">
+
+    <style>
+
+        html, body {
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        core-scaffold {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .content {
+            background-color: #fff;
+            height: 5000px;
+            padding: 20px;
+        }
+
+        /* some default styles for mode="cover" on core-scaffold */
+        core-scaffold[mode=cover]::shadow core-header-panel::shadow #mainContainer {
+            left: 120px;
+        }
+
+        core-scaffold[mode=cover] .content {
+            margin: 20px 100px 20px 0;
+        }
+
+        .core-selected {
+            background-color: #eee;
+        }
+
+        core-toolbar {
+            background-color: #26a948;
+        }
+
+    </style>
+</head>
+<body>
+
+<sampler-scaffold label="ERGOLATRON">
+    <paper-item icon="hardware:desktop-windows" label="Tables" url="monitor"></paper-item>
+    <paper-item icon="settings-input-antenna" label="Controls" url="controls"></paper-item>
+    <paper-item icon="trending-up" label="Stats" url="stats"></paper-item>
+    <paper-item icon="notification:sms" label="Alerts" url="alerts"></paper-item>
+</sampler-scaffold>
+
+</body>
+</html>

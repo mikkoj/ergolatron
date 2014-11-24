@@ -1,0 +1,99 @@
+<link rel="import" href="../x-ergolatron-table/x-ergolatron-table.html">
+
+<polymer-element name="x-ergolatron-table-grid" attributes="tables sortBy">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card-grid {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      x-ergolatron-table {
+        box-sizing: border-box;
+        flex-basis: 100%;
+        padding: 10px;
+      }
+      @media only screen and (min-width: 1000px) {
+        x-ergolatron-table {
+          flex-basis: 50%;
+        }
+      }
+    </style>
+    <section class="card-grid">
+      <template if="{{ tables.length > 0 }}">
+        <template repeat="{{ chunk in chunks }}">
+          <template repeat="{{ table in chunk }}">
+            <x-ergolatron-table table="{{ table }}"></x-ergolatron-table>
+          </template>
+        </template>
+      </template>
+      <template if="{{ tables.length == 0 }}">
+        <content></content>
+      </template>
+    </section>
+  </template>
+
+  <script>
+    Polymer('x-ergolatron-table-grid', {
+      previewChunkSize: 4,
+      animationDuration: 300, // milliseconds
+      created: function() {
+        this.tables = [];
+        this.chunks = [];
+      },
+      ready: function() {
+        this.currentChunkIndex = 0;
+      },
+      getPropertyValue: function (object, prop) {
+        if (!object.hasOwnProperty(prop)) {
+          throw Error("Object does not have property "+prop);
+        }
+
+        return object[prop];
+      },
+      getIteratorValue: function (table, sortBy) {
+        var sortKeys = sortBy.split('.'),
+          value;
+
+        if (sortKeys.length < 1) {
+          throw new Error("No sort keys");
+        } else if (sortKeys.length > 3) {
+          throw new Error("Too many sort keys");
+        }
+
+        // Initially set value as the first key's value
+        value = this.getPropertyValue(table, sortKeys[0]);
+        // We may need to go deeper.
+        for (var i = 1; i < sortKeys.length; i++) {
+          value = this.getPropertyValue(value, sortKeys[i]);
+        }
+
+        // When value is a string, return it lowercased for proper
+        // alphabetical ordering.
+        return typeof value === "string" ? value.toLowerCase() : value;
+      },
+      sortByChanged: function() {
+        this.tablesChanged();
+      },
+      tablesChanged: function() {
+        var self = this;
+
+        self.sortedTables = self.tables;
+        self.displayChunks();
+      },
+      displayChunks: function() {
+        var self = this;
+
+        self.chunks = [self.sortedTables.slice(0, self.previewChunkSize), []];
+        if (self.sortedTables.length > self.previewChunkSize) {
+          setTimeout(function() {
+            self.chunks[1] = self.sortedTables.slice(self.previewChunkSize);
+          }, self.animationDuration);
+        }
+      }
+    });
+  </script>
+</polymer-element>

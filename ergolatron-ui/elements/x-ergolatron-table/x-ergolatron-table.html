@@ -1,0 +1,215 @@
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="/bower_components/core-icons/core-icons.html">
+<link rel="import" href="/bower_components/core-icons/social-icons.html">
+<link rel="import" href="/bower_components/core-tooltip/core-tooltip.html">
+<link rel="import" href="/bower_components/core-icons/hardware-icons.html">
+
+<polymer-element name="x-ergolatron-table" attributes="table">
+<template>
+    <style>
+        :host {
+            display: flex;
+            position: relative;
+            overflow: visible;
+        }
+
+        .card-inner {
+            display: block;
+            width: 100%;
+            background-color: #fff;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+        }
+
+        [lost].card-inner {
+            opacity: .5;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, .2);
+        }
+
+        /* Favorited */
+        :host([favorite]) #favorite {
+            color: #dd2c00;
+        }
+
+        /* Other icons, and not favorited */
+        paper-icon-button, core-icon {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        core-icon {
+            margin-right: 0.5em;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        h1, h2 {
+            font-weight: 300;
+            font-family: 'Arial';
+        }
+
+        span {
+            font-family: 'Arial';
+        }
+
+        h1 {
+            margin: 0 0 15px 0;
+        }
+
+        h2 {
+            margin: 0;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        #amount {
+            white-space: nowrap;
+            font-size: 1.5em;
+        }
+
+        #description {
+            margin: 10px 0;
+        }
+
+        #modified {
+            font-size: 0.78em;
+            font-family: 'Arial';
+            margin: 0.2em 0;
+        }
+
+        .face {
+            display: inline-block;
+            background: transparent 50% 50%;
+            background-size: cover;
+            border-radius: 0em;
+            margin-bottom: 10px;
+        }
+
+        .face-user {
+            width: 2em;
+            height: 2em;
+        }
+
+        .face-owner {
+            width: 4em;
+            height: 4em;
+        }
+
+        .owner {
+            margin-right: 1em;
+        }
+
+        .owner-name {
+            font-size: 0.6em;
+            font-weight: 400;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+    </style>
+    <div class="card-inner" vertical layout>
+
+        <!-- Title bar-->
+        <div layout horizontal>
+            <div class="owner" layout vertical center>
+                    <span class="face face-owner" title="{{ table.person }}"
+                          style="background-image: url({{ table.personImg }})"></span>
+            </div>
+        </div>
+
+        <div horizontal layout justified>
+            <div vertical layout>
+                <h2>{{ table.person }}</h2>
+                <span>{{ table.site }}</span>
+                <div id="modified" horizontal layout>
+                    <p flex>
+                        <core-icon icon="history" size="14"></core-icon>
+                        {{ modified }}
+                    </p>
+                </div>
+            </div>
+            <div class="align-right">
+                <div vertical layout>
+                    <span id="amount">{{ table.currentHeight }} cm</span>
+
+                    <div class="buttons" horizontal layout>
+                        <paper-icon-button raised icon="hardware:keyboard-arrow-up" role="button" tabindex="0"
+                                           aria-label="arrow-up"
+                                           on-tap="{{ upTapped }}"></paper-icon-button>
+                        <paper-icon-button raised icon="hardware:keyboard-arrow-down" role="button" tabindex="0"
+                                           aria-label="arrow-down"
+                                           on-tap="{{ downTapped }}"></paper-icon-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</template>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://ergolatron-faye.azurewebsites.net/faye/client.js"></script>
+
+<script>
+    Polymer('x-ergolatron-table', {
+        publish: {
+            favorite: {
+                value: false,
+                reflect: true
+            }
+        },
+        hideEvent: true,
+        upTapped: function (event, detail, sender) {
+            console.log('tapped up');
+            this.fayeClient.publish('/commands', {
+                target: 'table',
+                command: 'up'
+            });
+        },
+        downTapped: function (event, detail, sender) {
+            console.log('tapped down');
+            this.fayeClient.publish('/commands', {
+                target: 'table',
+                command: 'down'
+            });
+        },
+        tableChanged: function () {
+            if (!!this.table) {
+                // Modified date
+                this.modified = moment(this.table.updated).fromNow();
+                console.log('tableChanged');
+                var self = this;
+                if (self.table.currentHeight > 85) {
+                    self.table.personImg = 'images/icon-stand.png';
+                } else {
+                    self.table.personImg = 'images/icon-sit.png';
+                }
+
+                this.fayeClient.subscribe('/sensors', function (message) {
+                    if (self.table) {
+                        self.table.currentHeight = message.height;
+                        self.modified = moment().fromNow();
+                        if (self.table.currentHeight > 85) {
+                            self.table.personImg = 'images/icon-stand.png';
+                        } else {
+                            self.table.personImg = 'images/icon-sit.png';
+                        }
+                    }
+                    console.log(message);
+                });
+            }
+        },
+        ready: function () {
+            console.log('ready');
+            this.fayeClient = new Faye.Client("http://ergolatron-faye.azurewebsites.net/faye");
+        }
+    });
+</script>
+</polymer-element>

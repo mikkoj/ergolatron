@@ -1,0 +1,29 @@
+<link rel="import" href="/bower_components/core-ajax/core-ajax.html">
+<polymer-element name="x-ergolatron-service" attributes="tables">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+    <core-ajax
+      id="getAll"
+      auto
+      url="http://ergolatron-server.azurewebsites.net/tables"
+      handleAs="json"
+      on-core-response="{{handleResponse}}"></core-ajax>
+
+  </template>
+  <script>
+    Polymer('x-ergolatron-service', {
+      created: function () {
+        this.tables = [];
+      },
+      handleResponse: function(){
+        var tables = this.$.getAll.response;
+        this.tables = tables;
+        console.log(this.tables.length);
+      }
+    });
+  </script>
+</polymer-element>

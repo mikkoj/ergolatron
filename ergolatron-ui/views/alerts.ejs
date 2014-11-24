@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="/bower_components/platform/platform.js"></script>
+
+    <link rel="import" href="/bower_components/paper-slider/paper-slider.html">
+
+    <style>
+
+        h3 {
+            font-family: 'Arial';
+            padding: 0px 10px;
+        }
+
+        .sliders paper-slider {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<h3>Maximum time sitting down (minutes/day)</h3>
+
+<div class="sliders">
+    <paper-slider min="30" max="500" value="200" editable></paper-slider>
+</div>
+
+<h3>Maximum time standing up (minutes/day)</h3>
+
+<div class="sliders">
+    <paper-slider min="30" max="500" value="200" editable></paper-slider>
+</div>
+
+</body>
+</html>

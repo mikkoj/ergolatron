@@ -1,0 +1,57 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/paper-slider/paper-slider.html">
+
+<polymer-element name="x-ergolatron-controls">
+    <template>
+        <style>
+
+            h3 {
+                font-family: 'Arial';
+                padding: 0px 10px;
+            }
+
+            .sliders paper-slider {
+                width: 100%;
+            }
+
+        </style>
+        <h3>Set new height for table</h3>
+
+        <div class="sliders">
+            <paper-slider min="60" max="130" value="75" editable
+                          value="{{sliderValue}}"
+                          immediateValue="{{sliderValue}}"
+                          change="{{sliderValueChanged}}"></paper-slider>
+        </div>
+
+    </template>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ergolatron-faye.azurewebsites.net/faye/client.js"></script>
+
+    <script>
+
+        Polymer('x-ergolatron-controls', {
+            created: function () {
+                this.sliderValue = 0;
+                this.fayeClient = new Faye.Client("http://ergolatron-faye.azurewebsites.net/faye");
+            },
+            defaultSortBy: "-LastModifiedDate",
+            sortBySelected: function (event, detail, sender) {
+                this.sortBy = this.$.sortBy.selected;
+                this.updateList();
+            },
+            filterChecked: function (event, detail, sender) {
+                this.updateList();
+            },
+            sliderValueChanged: function (a, b, c) {
+                console.log(this.sliderValue);
+                this.fayeClient.publish('/commands', {
+                    target: 'table',
+                    command: 'moveTo',
+                    data: this.sliderValue
+                });
+            }
+        });
+    </script>
+</polymer-element>

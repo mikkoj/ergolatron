@@ -1,0 +1,236 @@
+{
+  "tables": [
+    {
+      "tableId": "1234",
+      "site": "Turku",
+      "person": "Mikko Junnila",
+      "phoneNumber": "358407667843",
+      "created": "2014-10-25T11:50:13.138Z",
+      "updated": "2014-10-25T11:58:54.901Z",
+      "currentHeight": 60.3,
+      "stats": {
+        "sittingMinutes": 1.25,
+        "saddleMinutes": 2.0833333333333335,
+        "standingMinutes": 0.16666666666666666
+      },
+      "alerts": {
+        "sittingMin": 30,
+        "sittingMax": 400,
+        "standingMin": 30,
+        "standingMax": 100
+      }
+    }
+  ],
+  "tableHeightEvents": [
+    {
+      "tableId": "1234",
+      "height": 59.3,
+      "timestamp": "2014-10-25T11:50:17.519Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 59.3,
+      "timestamp": "2014-10-25T11:56:50.735Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 59.3,
+      "timestamp": "2014-10-25T11:56:56.172Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:03.740Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:31.787Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:32.066Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:32.362Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:32.665Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:32.933Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:33.147Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 69.3,
+      "timestamp": "2014-10-25T11:57:33.300Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:36.932Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:37.178Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:37.352Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:37.498Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:37.624Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:37.809Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:37.994Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:38.150Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:38.308Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:38.450Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:38.579Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:43.833Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:44.077Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:57:44.814Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:35.110Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:35.692Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:36.057Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:36.238Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:36.424Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:36.555Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:39.706Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:39.889Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:40.067Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:40.204Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 79.3,
+      "timestamp": "2014-10-25T11:58:40.400Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 100.3,
+      "timestamp": "2014-10-25T11:58:44.971Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 100.3,
+      "timestamp": "2014-10-25T11:58:45.394Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 60.3,
+      "timestamp": "2014-10-25T11:58:53.888Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 60.3,
+      "timestamp": "2014-10-25T11:58:54.313Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 60.3,
+      "timestamp": "2014-10-25T11:58:54.674Z"
+    },
+    {
+      "tableId": "1234",
+      "height": 60.3,
+      "timestamp": "2014-10-25T11:58:54.901Z"
+    }
+  ]
+}

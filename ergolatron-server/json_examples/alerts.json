@@ -1,0 +1,10 @@
+{
+  "tableId": "1234",
+  "alerts":
+  {
+    "sittingMin": 30,
+    "sittingMax": 400,
+    "standingMin": 30,
+    "standingMax": 100
+  }
+}
